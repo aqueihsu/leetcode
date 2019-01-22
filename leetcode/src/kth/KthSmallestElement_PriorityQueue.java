@@ -2,8 +2,10 @@ package kth;
 
 import java.util.PriorityQueue;
 
+import org.junit.Test;
+
 public class KthSmallestElement_PriorityQueue {
-    private class Wrapper {
+	private class Wrapper {
         int i;
         int j;
         

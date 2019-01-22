@@ -1,7 +1,5 @@
 package leetcode.string;
 
-import org.junit.jupiter.api.Test;
-
 public class MultiplyStrings_43 {
     public String multiply(String num1, String num2) {
         int m = num1.length(), n = num2.length();
