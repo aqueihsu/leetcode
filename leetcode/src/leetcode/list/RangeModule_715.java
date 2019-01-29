@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RangeModule_715 {
-    private class Interval {
-        int start;
-        int end;
-        Interval() { start = 0; end = 0; }
-        Interval(int s, int e) { start = s; end = e; }
-    }
-    
     class RangeModule {
+        private class Interval {
+            int start;
+            int end;
+            Interval(int s, int e) { start = s; end = e; }
+        }
         private List<Interval> intvs = new ArrayList<>();
 
         public RangeModule() {
@@ -54,19 +52,23 @@ public class RangeModule_715 {
         public void removeRange(int left, int right) {
             List<Interval> results = new ArrayList<>();
             
-            int latest = Integer.MIN_VALUE;
             for (Interval intv : intvs) {
-                if (latest < left && intv.start > right) {
-                    return;
-                }
-                if (intv.start > right || intv.end < left || (intv.start < left && intv.end > right)) {
+                if (intv.start >= right || intv.end <= left) {
                     // No overlaps
                     results.add(intv);
-                    latest = intv.end;
-                } else {
-                    
+                } else if (intv.start <= left || intv.end >= right) {
+                    // The interval includes the interval to remove
+                    int start1 = intv.start, end1 = left;
+                    if (start1 < end1) {
+                        results.add(new Interval(start1, end1));
+                    }
+                    int start2 = right, end2 = intv.end;
+                    if (start2 < end2) {
+                        results.add(new Interval(start2, end2));
+                    }
                 }
             }
+            intvs = results;
         }
     }
 }
