@@ -34,7 +34,7 @@ public class SmallestRange_632 {
         int nDistinctLists = 0;
         while (!queue.isEmpty()) {
             Pair pair = queue.poll();
-            sortedList.add(pair);
+            sortedList.addLast(pair);
             
             if (count[pair.iList] == 0) {
                 nDistinctLists++;
@@ -55,8 +55,6 @@ public class SmallestRange_632 {
             
             if (itors[pair.iList].hasNext()) {
                 queue.add(new Pair(pair.iList, itors[pair.iList].next()));
-            } else {
-                break;
             }
         }
         return new int[] {valStart, valEnd};
