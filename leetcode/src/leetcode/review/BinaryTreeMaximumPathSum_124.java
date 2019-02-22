@@ -12,6 +12,10 @@ public class BinaryTreeMaximumPathSum_124 {
     int maxPathSum = Integer.MIN_VALUE;
     
     public int maxPathSum(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        maxPathSum = root.val;
         maxDepthSum(root);
         return maxPathSum;
     }
@@ -20,14 +24,14 @@ public class BinaryTreeMaximumPathSum_124 {
         if (node == null) {
             return 0;
         }
-        int leftSum = maxDepthSum(node.left);
-        int rightSum = maxDepthSum(node.right);
+        int leftDepthSum = maxDepthSum(node.left);
+        int rightDepthSum = maxDepthSum(node.right);
         
-        int leftMidSum = leftSum + node.val;
-        int rightMidSum = rightSum + node.val;
-        int midSum = leftSum + rightSum + node.val;
+        int subDepthSum = Math.max(leftDepthSum, rightDepthSum);
+        int currDepthSum = subDepthSum > 0 ? subDepthSum + node.val : node.val;
+        int thruPathSum = leftDepthSum + rightDepthSum + node.val;
         
-        maxPathSum = Math.max(Math.max(rightMidSum, rightMidSum), Math.max(midSum, maxPathSum));
-        return Math.max(leftSum, rightSum) + node.val;
+        maxPathSum = Math.max(Math.max(currDepthSum, thruPathSum), maxPathSum);
+        return currDepthSum;
     }
 }
