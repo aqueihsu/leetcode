@@ -1,7 +1,7 @@
 package leetcode.review;
 
 public class PathSum_112 {
-    public class TreeNode {
+    private class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
